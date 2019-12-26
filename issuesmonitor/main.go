@@ -94,7 +94,8 @@ func main() {
 	<-quit
 	fmt.Println()
 	inputData.EndDate = time.Now()
-	inputData.ActualTime = inputData.EndDate.Sub(inputData.StartDate).String()
+	hours := inputData.EndDate.Sub(inputData.StartDate).Hours()
+	inputData.ActualTime = fmt.Sprintf("%.8f", hours)
 
 	d, err := json.Marshal(inputData)
 	if err != nil {
@@ -149,7 +150,7 @@ func main() {
 		printError(err, inputData)
 	}
 
-	fmt.Println(fmt.Sprintf("svn commit #%s @%s", inputData.IssueId.Variable, inputData.ActualTime))
+	fmt.Println(fmt.Sprintf("svn commit -m \"closes #%s @%s\"", inputData.IssueId.Variable, inputData.ActualTime))
 }
 
 func isDuration(name string) func(string) error {
