@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
-	"issuesmonitor/data"
+	commonsdata "issuesmonitor/commons-data"
 	"os"
 )
 
@@ -15,7 +15,7 @@ func main() {
 		printError(err)
 	}
 
-	dir := wd + data.Dir
+	dir := wd // + data.Dir TODO(pierDipi) redo
 	hostname, err := os.Hostname()
 	if err != nil {
 		printError(err)
@@ -38,7 +38,7 @@ func main() {
 		if err != nil {
 			break
 		}
-		var line data.Data
+		var line commonsdata.Data
 		err = json.Unmarshal([]byte(lineStr), &line)
 		if err != nil {
 			printError(err)
@@ -47,7 +47,7 @@ func main() {
 	}
 }
 
-func consumeLine(line data.Data) {
+func consumeLine(line commonsdata.Data) {
 	fmt.Println(line)
 }
 
