@@ -139,7 +139,7 @@ type IssueMetrics struct {
 }
 
 type Parent struct {
-	ID string `json:"id"`
+	ID uint64 `json:"id"`
 }
 
 type Hours float64
@@ -163,7 +163,7 @@ func run() error {
 	var redmineBaseUrl string
 
 	flag.StringVar(&issueMetrics.ProjectId, projectIdFlag, "", projectIdUsage)
-	flag.StringVar(&issueMetrics.Parent.ID, parentIssueIdFlag, "", parentIssueIdUsage)
+	//flag.StringVar(&issueMetrics.Parent.ID, parentIssueIdFlag, "", parentIssueIdUsage)
 	flag.Int64Var(&issueMetrics.IssueId, issueIdFlagName, defaultIssueId, issueIdFlagName)
 	flag.StringVar(&apiKey, apiKeyFlag, "", apiKeyUsage)
 	flag.StringVar(&redmineBaseUrl, redmineBaseURLFlag, "", redmineBaseUrl)
